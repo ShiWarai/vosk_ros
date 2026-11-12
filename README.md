@@ -50,7 +50,7 @@ cd ~/ros2_ws
 pip3 install vosk numpy
 
 # Соберите пакет
-colcon build --packages-select vosk_ros
+colcon build --packages-up-to vosk_ros
 
 # Загрузите окружение ROS2
 source install/setup.bash
@@ -163,7 +163,7 @@ ros2 launch vosk_ros vosk.launch.py \
 - Другие топики аудио настраиваются через параметр `audio_topic`
 
 **Публикация:**
-- `/audio/transcription` (`vosk_ros/msg/Transcription`) - публикует результаты распознавания речи (по умолчанию, формируется автоматически из `audio_topic`)
+- `/audio/transcription` (`rds_2p_audio/msg/Transcription`) - публикует результаты распознавания речи (по умолчанию, формируется автоматически из `audio_topic`)
 - Топик транскрипции формируется автоматически как `/audio_topic/transcription`, если не указан явно
 
 **Примеры:**
@@ -172,9 +172,11 @@ ros2 launch vosk_ros vosk.launch.py \
 
 ## Действия (Actions)
 
-- `/vosk/listen` (`vosk_ros/action/STT`) - действие для запроса распознавания речи
+- `/vosk/listen` (`rds_2p_audio/action/STT`) - действие для запроса распознавания речи
 
 ## Сообщения
+
+Интерфейсы общие для `vosk_ros` и `gigaam_ros` и находятся в пакете `rds_2p_audio`.
 
 ### Transcription
 - `text` (string) - распознанный текст

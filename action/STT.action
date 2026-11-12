@@ -1,5 +1,0 @@
-string prompt
-vosk_ros/GrammarConfig grammar_config
----
-vosk_ros/Transcription transcription
----
