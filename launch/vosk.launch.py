@@ -33,7 +33,7 @@ def generate_launch_description():
     # Получаем путь к модели по умолчанию из директории share пакета
     from ament_index_python.packages import get_package_share_directory
     import os
-    pkg_share_dir = get_package_share_directory('vosk_ros2')
+    pkg_share_dir = get_package_share_directory('vosk_ros')
     default_model_path = os.path.join(pkg_share_dir, 'models', 'vosk-model-small-ru-0.22')
 
     # Аргументы запуска
@@ -81,7 +81,7 @@ def generate_launch_description():
 
     # Узел
     vosk_node = Node(
-        package='vosk_ros2',
+        package='vosk_ros',
         executable='vosk_node',
         name='vosk_node',
         namespace='vosk',

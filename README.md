@@ -1,4 +1,4 @@
-# vosk_ros2
+# vosk_ros
 Пакет ROS 2 для запуска STT ноды на основе Vosk
 
 ## 📋 Описание
@@ -50,7 +50,7 @@ cd ~/ros2_ws
 pip3 install vosk numpy
 
 # Соберите пакет
-colcon build --packages-select vosk_ros2
+colcon build --packages-select vosk_ros
 
 # Загрузите окружение ROS2
 source install/setup.bash
@@ -68,11 +68,11 @@ source install/setup.bash
    wget https://alphacephei.com/vosk/models/vosk-model-small-ru-0.22.zip
    ```
 
-3. **Распакуйте модель в директорию `models` внутри пакета `vosk_ros2`:**
+3. **Распакуйте модель в директорию `models` внутри пакета `vosk_ros`:**
    ```bash
-   unzip vosk-model-small-ru-0.22.zip -d ~/ros2_ws/src/vosk_ros2/models/
+   unzip vosk-model-small-ru-0.22.zip -d ~/ros2_ws/src/vosk_ros/models/
    # Убедитесь, что путь к модели внутри пакета выглядит так:
-   # ~/ros2_ws/src/vosk_ros2/models/vosk-model-small-ru
+   # ~/ros2_ws/src/vosk_ros/models/vosk-model-small-ru
    ```
    Или укажите путь к модели через параметр `model_path` при запуске узла.
 
@@ -87,7 +87,7 @@ source install/setup.bash
 ros2 launch rds_2p_audio audio_nodes.launch.py
 
 # Терминал 2: Запустите vosk_node
-ros2 launch vosk_ros2 vosk.launch.py
+ros2 launch vosk_ros vosk.launch.py
 ```
 
 ### Запуск для Telegram аудио
@@ -95,7 +95,7 @@ ros2 launch vosk_ros2 vosk.launch.py
 Для работы с голосовыми сообщениями из Telegram используйте специальный launch файл:
 
 ```bash
-ros2 launch vosk_ros2 vosk_telegram.launch.py
+ros2 launch vosk_ros vosk_telegram.launch.py
 ```
 
 Этот launch файл автоматически настроен для работы с Telegram:
@@ -130,17 +130,17 @@ ros2 launch vosk_ros2 vosk_telegram.launch.py
 
 **Стандартный запуск (микрофон):**
 ```bash
-ros2 launch vosk_ros2 vosk.launch.py
+ros2 launch vosk_ros vosk.launch.py
 ```
 
 **Для Telegram аудио:**
 ```bash
-ros2 launch vosk_ros2 vosk_telegram.launch.py
+ros2 launch vosk_ros vosk_telegram.launch.py
 ```
 
 **С кастомными параметрами:**
 ```bash
-ros2 launch vosk_ros2 vosk.launch.py \
+ros2 launch vosk_ros vosk.launch.py \
     audio_topic:="/my_audio_topic" \
     transcription_topic:="/my_transcription_topic" \
     default_sample_rate:=16000 \
@@ -150,7 +150,7 @@ ros2 launch vosk_ros2 vosk.launch.py \
 
 **С ранней инициализацией (для известного формата):**
 ```bash
-ros2 launch vosk_ros2 vosk.launch.py \
+ros2 launch vosk_ros vosk.launch.py \
     audio_topic:="/audio/input" \
     default_sample_rate:=44100 \
     default_channels:=1
@@ -163,7 +163,7 @@ ros2 launch vosk_ros2 vosk.launch.py \
 - Другие топики аудио настраиваются через параметр `audio_topic`
 
 **Публикация:**
-- `/audio/transcription` (`vosk_ros2/msg/Transcription`) - публикует результаты распознавания речи (по умолчанию, формируется автоматически из `audio_topic`)
+- `/audio/transcription` (`vosk_ros/msg/Transcription`) - публикует результаты распознавания речи (по умолчанию, формируется автоматически из `audio_topic`)
 - Топик транскрипции формируется автоматически как `/audio_topic/transcription`, если не указан явно
 
 **Примеры:**
@@ -172,7 +172,7 @@ ros2 launch vosk_ros2 vosk.launch.py \
 
 ## Действия (Actions)
 
-- `/vosk/listen` (`vosk_ros2/action/STT`) - действие для запроса распознавания речи
+- `/vosk/listen` (`vosk_ros/action/STT`) - действие для запроса распознавания речи
 
 ## Сообщения
 

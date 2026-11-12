@@ -19,8 +19,8 @@ import threading
 import os
 import numpy as np
 
-from vosk_ros2.msg import Transcription
-from vosk_ros2.action import STT
+from vosk_ros.msg import Transcription
+from vosk_ros.action import STT
 from audio_common_msgs.msg import AudioStamped
 
 

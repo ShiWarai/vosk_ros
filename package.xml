@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>vosk_ros2</name>
+  <name>vosk_ros</name>
   <version>0.1.0</version>
   <description>ROS2 пакет для распознавания речи на основе Vosk</description>
   <maintainer email="zhuravliov.pav@yandex.ru">Zhuravliov Pavel</maintainer>
