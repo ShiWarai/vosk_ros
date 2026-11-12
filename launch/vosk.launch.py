@@ -33,7 +33,7 @@ def generate_launch_description():
     # Получаем путь к модели по умолчанию из директории share пакета
     from ament_index_python.packages import get_package_share_directory
     import os
-    pkg_share_dir = get_package_share_directory('vosk_ros2')
+    pkg_share_dir = get_package_share_directory('vosk_ros')
     default_model_path = os.path.join(pkg_share_dir, 'models', 'vosk-model-small-ru-0.22')
 
     # Аргументы запуска
@@ -61,9 +61,27 @@ def generate_launch_description():
         description='Максимальное время накопления аудио в секундах перед принудительным сбросом (защита от переполнения)'
     )
 
+    silence_timeout_arg = DeclareLaunchArgument(
+        'silence_timeout',
+        default_value='2.0',
+        description='Таймаут тишины в секундах для публикации результата после окончания потока данных (для файлов)'
+    )
+
+    default_sample_rate_arg = DeclareLaunchArgument(
+        'default_sample_rate',
+        default_value='44100',
+        description='Частота дискретизации по умолчанию для ранней инициализации recognizer (0 = ленивая инициализация)'
+    )
+
+    default_channels_arg = DeclareLaunchArgument(
+        'default_channels',
+        default_value='1',
+        description='Количество каналов по умолчанию для ранней инициализации recognizer'
+    )
+
     # Узел
     vosk_node = Node(
-        package='vosk_ros2',
+        package='vosk_ros',
         executable='vosk_node',
         name='vosk_node',
         namespace='vosk',
@@ -72,6 +90,9 @@ def generate_launch_description():
             'audio_topic': LaunchConfiguration('audio_topic'),
             'transcription_topic': LaunchConfiguration('transcription_topic'),
             'max_audio_time': LaunchConfiguration('max_audio_time'),
+            'silence_timeout': LaunchConfiguration('silence_timeout'),
+            'default_sample_rate': LaunchConfiguration('default_sample_rate'),
+            'default_channels': LaunchConfiguration('default_channels'),
         }],
         output='screen'
     )
@@ -81,5 +102,8 @@ def generate_launch_description():
         audio_topic_arg,
         transcription_topic_arg,
         max_audio_time_arg,
+        silence_timeout_arg,
+        default_sample_rate_arg,
+        default_channels_arg,
         vosk_node,
     ])

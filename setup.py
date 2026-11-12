@@ -2,7 +2,7 @@ from setuptools import setup
 import os
 from glob import glob
 
-package_name = 'vosk_ros2'
+package_name = 'vosk_ros'
 
 # Collect all model files recursively
 def get_model_files():
